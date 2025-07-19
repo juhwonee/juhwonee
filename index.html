@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JuHwon Jeong</title>
+    <style>
+        :root {
+            --main-color: #2b6cb0;
+            --accent-color: #f6ad55;
+            --accent-hover: #d97a00;
+            --bg-color: #f7fafc;
+            --card-bg: #fff;
+            --text-color: #222;
+            --border-radius: 14px;
+        }
+
+        body {
+            background: var(--bg-color);
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 40px auto;
+            padding: 24px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.07);
+        }
+
+        h1 {
+            color: var(--main-color);
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin-top: 32px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            font-size: 1.25rem;
+        }
+
+        .mypic {
+            height: 180px;
+            object-fit: cover;
+            border: 3px solid var(--main-color);
+            border-radius: 4px;
+        }
+
+        ul,
+        ol {
+            margin: 0 0 20px 20px;
+            padding: 0;
+        }
+
+        .timeline {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .timeline li {
+            margin-bottom: 18px;
+            padding-left: 12px;
+            border-left: 3px solid var(--main-color);
+            position: relative;
+        }
+
+        .timeline li::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            background: var(--main-color);
+            border-radius: 50%;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            background: var(--main-color);
+            color: #fff;
+            border-radius: 20px;
+            padding: 7px 16px;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+            letter-spacing: 0.02em;
+        }
+
+        .contact-btn {
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+            transition: background 0.2s;
+        }
+
+        .contact-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .modal,
+        .cert-modal-bg {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active,
+        .cert-modal-bg.active {
+            display: flex;
+        }
+
+        .modal-content,
+        .cert-modal-content {
+            background: #fff;
+            max-width: 340px;
+            margin: 10px auto 0;
+            padding: 30px 24px 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
+            position: relative;
+            text-align: left;
+        }
+
+        .cert-modal-content {
+            padding: 16px;
+            max-width: 550px;
+            text-align: center;
+        }
+
+        .close-btn,
+        .cert-close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .cert-modal-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 16px;
+            box-shadow: 0 2px 10px rgba(44, 62, 80, 0.08);
+        }
+
+        .modal-content h2 {
+            color: var(--main-color);
+            margin-top: 0;
+        }
+
+        .modal-content ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 1.08rem;
+        }
+
+        .modal-content a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .modal-content a:hover {
+            text-decoration: underline;
+        }
+
+        .certification {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .certification-badge {
+            background: var(--main-color);
+            color: #fff;
+            border-radius: 20px;
+            padding: 7px 16px;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+            letter-spacing: 0.02em;
+        }
+
+        .certification-badge:hover {
+            background: #224a7b;
+        }
+
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .skills {
+                flex-direction: column;
+            }
+
+            .modal-content,
+            .cert-modal-content {
+                margin: 60px auto 0;
+                padding: 12px 8px 10px;
+                max-width: 94vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="mypic.jpg" alt="mypic" class="mypic">
+        <h1>정주훤 JuHwon Jeong</h1>
+        <p><strong>전남대학교 컴퓨터정보통신공학과 재학 중</strong><br></p>
+
+        <h2>학력</h2>
+        <ul class="timeline">
+            <li><strong>2019.02</strong> 운남고등학교 졸업</li>
+            <li><strong>2020.11</strong> 순천대학교 정보통신.멀티미디어공학부 중퇴</li>
+            <li><strong>2021.03</strong> 전남대학교 컴퓨터정보통신공학과 입학</li>
+        </ul>
+
+        <h2>경력 및 활동</h2>
+        <ul class="timeline">
+            <li><strong>2022.02 ~ 2023.08</strong> 대한민국 육군 K200 장갑차 조종수 병장 만기전역
+            </li>
+            <li><strong>2023.09 ~ 2024.08</strong> 전남대학교 동물봉사 중앙동아리 『대학희망』 부회장</li>
+            <li><strong>2024.08 ~ 2025.05</strong> AI Lab 코딩학원 광주 일곡점 파트타임 강사</li>
+            <li><strong>2024.09 ~ 2025.08</strong> 전남대학교 전자컴퓨터공학부 학생회 총무부장</li>
+            <li><strong>2025.01 ~ 2025.12</strong> 전남대학교 전자컴퓨터공학부 학술동아리 『ICON』 회장</li>
+        </ul>
+
+        <h2>교육 및 수상</h2>
+        <ul class="timeline">
+            <li><strong>2023.12.26 ~ 2023.12.28</strong> Fundamental of Testing on ATE 교육 수료</li>
+            <li><strong>2024.01.08 ~ 2024.01.12</strong> ADVANTEST SoC TEST 현장실습 training 수료</li>
+            <li><strong>2024.11.01</strong> 2024 차세대통신 프로젝트 경진대회 - 최우수상 수상</li>
+            <li><strong>2025.03.21 ~ 2025.04.30</strong> 2025 전남대학교 SW 디지털 경진대회 참가</li>
+            <li><strong>2025.06</strong> IoT 컴퓨팅 아두이노 기반 프로젝트 진행</li>
+            <li><strong>2025.07</strong> HL FMA 2025 자율주행 경진대회 진행 중</li>
+            <li><strong>2025.08</strong> 2025 Data Create Camp 참가</li>
+        </ul>
+
+        <h2>기술 스택</h2>
+        <div class="skills">
+            <span class="skill-badge">C/C++</span>
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">Linux</span>
+            <span class="skill-badge">MySQL</span>
+            <span class="skill-badge">Arduino IDE</span>
+        </div>
+
+        <h2>자격 증명</h2>
+        <div class="certification">
+            <span class="certification-badge" id="certOpen">Coding Specialist Professional 2급 (C)</span>
+
+        </div>
+
+        <div style="text-align:right; margin-top:30px;">
+            <button id="contactBtn" class="contact-btn">Contact Me</button>
+        </div>
+        <br><br>
+        © 2025 JuHwon Jeong
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <button id="closeModal" class="close-btn">&times;</button>
+            <h2>Contact Me</h2>
+            <ul>
+                <li><strong>Tel:</strong> +82 01067887585</li>
+                <li><strong>Email:</strong> juhwonjeong@gmail.com</li>
+                <li><strong>Instagram:</strong> <a href="https://www.instagram.com/juhwonee/"
+                        target="_blank">@juhwonee</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="certModal" class="cert-modal-bg">
+        <div class="cert-modal-content">
+            <button id="certClose" class="cert-close-btn">&times;</button>
+            <img src="cospro2.jpg" alt="cospro2">
+        </div>
+    </div>
+
+    <script>
+        // Contact Modal
+        document.getElementById('contactBtn').onclick = function () {
+            document.getElementById('contactModal').classList.add('active');
+        };
+        document.getElementById('closeModal').onclick = function () {
+            document.getElementById('contactModal').classList.remove('active');
+        };
+        document.getElementById('contactModal').onclick = function (e) {
+            if (e.target === this) this.classList.remove('active');
+        };
+
+        // Certification Modal
+        document.getElementById('certOpen').onclick = function () {
+            document.getElementById('certModal').classList.add('active');
+        };
+        document.getElementById('certClose').onclick = function () {
+            document.getElementById('certModal').classList.remove('active');
+        };
+        document.getElementById('certModal').onclick = function (e) {
+            if (e.target === this) this.classList.remove('active');
+        };
+    </script>
+</body>
+
+</html>
