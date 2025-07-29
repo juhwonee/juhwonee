@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2025-1 ICON</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f9f6f2;
+            background-image:
+                linear-gradient(0deg, #f3e9da 1px, transparent 1px),
+                linear-gradient(90deg, #f3e9da 1px, transparent 1px);
+            background-size: 32px 32px;
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Gowun Dodum', 'Jua', 'Noto Sans KR', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(200, 170, 120, 0.15), 0 1.5px 0 #f3e9da;
+            padding: 40px 32px 32px 32px;
+            max-width: 600px;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border: 2px solid #f3e9da;
+        }
+
+        h1 {
+            font-family: 'Jua', 'Gowun Dodum', sans-serif;
+            font-size: 2.4rem;
+            color: #e7b97c;
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title-small {
+            font-size: 1.2rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .title-large {
+            font-size: 3.6rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: #8d7350;
+            margin-bottom: 26px;
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .activity-img {
+            width: 80%;
+            max-width: 320px;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(190, 160, 100, 0.13);
+            margin-bottom: 5px;
+            border: 2px solid #f3e9da;
+        }
+
+        .img-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .img-row img {
+            width: 48%;
+            min-width: 100px;
+            max-width: 210px;
+            border-radius: 18px;
+            border: 2px solid #f3e9da;
+            box-shadow: 0 2px 12px rgba(190, 160, 100, 0.13);
+            object-fit: cover;
+            margin-bottom: 0;
+        }
+
+        .img-row.graduate img {
+            height: 210px;
+        }
+
+        .desc {
+            font-size: 1.08rem;
+            color: #7b5d3a;
+            line-height: 1.7;
+            margin-bottom: 12px;
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        /* 벚꽃사진 그룹 */
+        .flower-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 12px 0 20px 0;
+        }
+
+        .flower-row {
+            position: relative;
+            width: 340px;
+            height: 110px;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .flower-row img {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 2.5px solid #f3e9da;
+            box-shadow: 0 2px 12px rgba(190, 160, 100, 0.13);
+            background: #fff;
+            cursor: pointer;
+            transition: transform 0.18s, box-shadow 0.18s;
+        }
+
+        .flower-row.top img:nth-child(1) {
+            left: 0px;
+            top: 10px;
+            z-index: 1;
+            transform: rotate(-7deg);
+        }
+
+        .flower-row.top img:nth-child(2) {
+            left: 65px;
+            top: -4px;
+            z-index: 2;
+            transform: rotate(-2deg);
+        }
+
+        .flower-row.top img:nth-child(3) {
+            left: 130px;
+            top: 12px;
+            z-index: 3;
+            transform: rotate(5deg);
+        }
+
+        .flower-row.top img:nth-child(4) {
+            left: 200px;
+            top: 0px;
+            z-index: 4;
+            transform: rotate(-4deg);
+        }
+
+        .flower-row.bottom img:nth-child(1) {
+            left: 40px;
+            top: 18px;
+            z-index: 1;
+            transform: rotate(4deg);
+        }
+
+        .flower-row.bottom img:nth-child(2) {
+            left: 120px;
+            top: -2px;
+            z-index: 2;
+            transform: rotate(-6deg);
+        }
+
+        .flower-row.bottom img:nth-child(3) {
+            left: 200px;
+            top: 20px;
+            z-index: 3;
+            transform: rotate(7deg);
+        }
+
+        .flower-row img:active,
+        .flower-row img:focus {
+            transform: scale(1.09) !important;
+            box-shadow: 0 4px 24px rgba(200, 170, 120, 0.25);
+            z-index: 10;
+        }
+
+        .somoem-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 180px;
+        }
+
+        .somoem-row img {
+            height: 180px;
+            width: auto;
+            max-width: 170px;
+            min-width: 80px;
+            border-radius: 18px;
+            border: 2px solid #f3e9da;
+            box-shadow: 0 2px 12px rgba(190, 160, 100, 0.13);
+            background: #fff;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 1;
+            transition: box-shadow 0.18s;
+            object-fit: cover;
+        }
+
+        .somoem-row img:nth-child(1) {
+            left: 0px;
+            z-index: 1;
+        }
+
+        .somoem-row img:nth-child(2) {
+            left: -20px;
+            z-index: 2;
+        }
+
+        .somoem-row img:nth-child(3) {
+            left: -40px;
+            z-index: 3;
+        }
+
+        .modal-bg {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(40, 30, 10, 0.33);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-bg.active {
+            display: flex;
+        }
+
+        .modal-img {
+            max-width: 90vw;
+            max-height: 80vh;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.20);
+            border: 3px solid #f3e9da;
+            background: #fff;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 18px 6vw;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .activity-img {
+                width: 98%;
+            }
+
+            .flower-group {
+                max-width: 98vw;
+            }
+
+            .flower-row {
+                width: 170px;
+                height: 56px;
+            }
+
+            .flower-row img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .flower-row.top img:nth-child(2) {
+                left: 32px;
+            }
+
+            .flower-row.top img:nth-child(3) {
+                left: 64px;
+            }
+
+            .flower-row.top img:nth-child(4) {
+                left: 96px;
+            }
+
+            .flower-row.bottom img:nth-child(1) {
+                left: 20px;
+            }
+
+            .flower-row.bottom img:nth-child(2) {
+                left: 60px;
+            }
+
+            .flower-row.bottom img:nth-child(3) {
+                left: 100px;
+            }
+
+            .somoem-row {
+                height: 90px;
+            }
+
+            .somoem-row img {
+                height: 90px;
+                max-width: 80px;
+                min-width: 40px;
+            }
+
+            .somoem-row img:nth-child(2) {
+                left: -10px;
+            }
+
+            .somoem-row img:nth-child(3) {
+                left: -20px;
+            }
+        }
+
+        .somoem-row img,
+        .img-row img {
+            background: #fff;
+            border-radius: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>
+            <span class="title-small">2025-1</span>
+            <span class="title-large">ICON</span>
+        </h1>
+        <div class="subtitle">전남대학교 전자컴퓨터공학부 학술·친목동아리 ICON<br>2025학년도 1학기 활동 보고</div>
+
+        <br>
+        <div class="desc"><b>회장</b> : 정주훤<br>
+            <b>부회장</b> : 김성찬<br>
+            <b>운영부장</b> : 김나흔<br>
+            <b>총무</b> : 배정서<br>
+            <b>서기</b> : 양정원
+        </div>
+
+        <br><br><br>
+        <div class="desc"><b>2025학년도 신입생 모집</b></div>
+        <div class="img-row">
+            <img src="media_icon/recruit1.png" alt="recruit1">
+            <img src="media_icon/recruit2.png" alt="recruit2">
+        </div>
+
+        <br><br><br><br><br>
+        <div class="desc"><b>2025.02.07</b><br>전자컴퓨터공학부 신입생 OT</div>
+        <img src="media_icon/OT.jpg" class="activity-img" alt="OT">
+
+        <br><br><br><br><br>
+        <div class="desc"><b>2025.02.26</b><br>ICON 선배님들 졸업식</div>
+        <div class="img-row graduate">
+            <img src="media_icon/graduate.jpg" alt="graduate1">
+            <img src="media_icon/graduate2.jpg" alt="graduate2">
+        </div>
+
+        <br><br><br><br><br>
+        <div class="desc"><b>2025.03.02</b><br>개강 전 신입생 친목회</div>
+        <img src="media_icon/new.jpg" class="activity-img" alt="new">
+
+        <br><br><br><br><br>
+        <div class="desc"><b>2025.03.10</b><br>ICON OT & 개강총회</div>
+        <img src="media_icon/icon_ot.jpg" class="activity-img" alt="icon_ot">
+        <img src="media_icon/icon_ot3.jpg" class="activity-img" alt="icon_ot3">
+        <img src="media_icon/icon_ot4.jpg" class="activity-img" alt="icon_ot4">
+
+        <br><br><br><br><br>
+        <div class="desc"><b>2025.03.12 ~ 2025.05.28</b><br>C언어 코딩 교육<br>HELLO, C!</div>
+        <img src="media_icon/helloc.jpg" class="activity-img" alt="helloc">
+        <img src="media_icon/helloc2.jpg" class="activity-img" alt="helloc2">
+
+        <br><br><br><br><br>
+        <div class="desc"><b>2025.04.03</b><br>단체 야구 관람<br>삼성 vs 기아<br>3:1 기아 승!</div>
+        <img src="media_icon/baseball.png" class="activity-img">
+        <img src="media_icon/baseball2.png.jpg" class="activity-img">
+
+        <br><br><br><br><br>
+        <div class="desc"><b>2025.04.10</b><br>벚꽃사진 콘테스트</div>
+        <img src="media_icon/flower.png" class="activity-img" alt="flower poster">
+        <div class="flower-group">
+            <div class="flower-row top">
+                <img src="media_icon/flower1.jpg" alt="flower1">
+                <img src="media_icon/flower2.jpg" alt="flower2">
+                <img src="media_icon/flower3.jpg" alt="flower3">
+                <img src="media_icon/flower4.jpg" alt="flower4">
+            </div>
+            <div class="flower-row bottom">
+                <img src="media_icon/flower5.jpg" alt="flower5">
+                <img src="media_icon/flower6.jpg" alt="flower6">
+                <img src="media_icon/flower7.jpg" alt="flower7">
+            </div>
+        </div>
+        <div class="desc">(사진을 클릭해보세요!)</div>
+
+        <br><br><br><br><br>
+        <div class="desc"><b>2025.04.25</b><br>중간총회 겸 야유회 앞풀이</div>
+        <div class="somoem-row">
+            <img src="media_icon/somoem.jpg" alt="somoem1">
+            <img src="media_icon/somoem2.jpg" alt="somoem2">
+            <img src="media_icon/somoem3.jpg" alt="somoem3">
+        </div>
+
+        <br><br><br><br><br>
+        <div class="desc"><b>2025.05.02 ~ 2025.05.03</b><br>ICON 야유회<br>부원 53명과 함께 영광으로 1박 2일!</div>
+        <img src="media_icon/travel.jpg" class="activity-img">
+        <img src="media_icon/travel2.jpg" class="activity-img">
+        <video src="media_icon/mt.mov" controls style="border-radius:18px; width:370px;"></video>
+
+        <br><br><br><br><br>
+        <div class="desc"><b>2025.06.24</b><br>전자컴퓨터공학부 축구 동아리 FC RANDOM과 함께한<br>ICON & FC RANDOM 연합 종강총회</div>
+        <img src="media_icon/final.jpg" class="activity-img">
+
+        <br><br><br><br><br>
+        <h2 class="desc">한 학기 동안 보내주신 큰 관심과 성원에 감사드립니다!<br>
+            앞으로도 ICON은 더욱 다채롭고 즐거운 활동으로 여러분과 함께하겠습니다 :)</h2>
+    </div>
+
+    <div class="modal-bg" id="modalBg">
+        <img src="" class="modal-img" id="modalImg" alt="확대 이미지">
+    </div>
+    <script>
+        document.querySelectorAll('.flower-group img').forEach(function (img) {
+            img.addEventListener('click', function () {
+                var modal = document.getElementById('modalBg');
+                var modalImg = document.getElementById('modalImg');
+                modalImg.src = this.src;
+                modal.classList.add('active');
+            });
+        });
+        document.getElementById('modalBg').addEventListener('click', function (e) {
+            if (e.target === this) this.classList.remove('active');
+        });
+    </script>
+</body>
+
+</html>
