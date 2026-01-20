@@ -1,7 +1,6 @@
 while 1:
     S = input()
     stack = []
-
     if S == '.':
         break
 
