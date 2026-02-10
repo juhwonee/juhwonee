@@ -9,7 +9,7 @@ for _ in range(N):
     M = input().split()
 
     if M[0] == 'push':
-        queue.append(int(M[1]))
+        queue.append((M[1]))
 
     elif M[0] == 'pop':
         if not queue:
