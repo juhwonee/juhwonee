@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정주훤 JuHwon Jeong</title>
+    <style>
+        /* ==================== 기본 리셋 ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ==================== Body 스타일 ==================== */
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fafafa;
+            /* 십자 무늬 배경 */
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+            color: #2c3e50;
+            line-height: 1.6;
+            background-size: 10px 10px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 75px;
+        }
+
+        /* ==================== 헤더 스타일 ==================== */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e8e8e8;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid #f0f0f0;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        /* ==================== 섹션 스타일 ==================== */
+        section {
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        /* ==================== 리스트 스타일 ==================== */
+        .content-list {
+            list-style: none;
+            padding: 0;
+            margin-left: 5px;
+        }
+
+        .content-list li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+            font-size: 0.95rem;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* » 기호 */
+        .content-list li::before {
+            content: '»';
+            position: absolute;
+            left: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+
+        /* ==================== 항목 텍스트 스타일 ==================== */
+        .item-title {
+            font-weight: 500;
+        }
+
+        .item-date {
+            font-size: 0.75rem;
+            color: #95a5a6;
+            font-style: italic;
+            margin-left: 6px;
+        }
+
+        .item-desc {
+            display: block;
+            font-size: 0.88rem;
+            color: #666;
+            margin-top: 3px;
+            font-weight: 400;
+        }
+
+        /* ==================== 호버 효과 ==================== */
+        .content-list li[data-tbcrew],
+        .content-list li[data-project],
+        .content-list li[data-training],
+        .content-list li[data-cert] {
+            cursor: pointer;
+            transition: background 0.2s, padding-left 0.2s;
+        }
+
+        .content-list li[data-tbcrew]:hover,
+        .content-list li[data-project]:hover,
+        .content-list li[data-training]:hover,
+        .content-list li[data-cert]:hover {
+            background: #f0f0f0;
+            padding-left: 35px;
+        }
+
+        /* ==================== 클릭 가능 항목 밑줄 ==================== */
+        .content-list li[data-tbcrew]:not([data-tbcrew=""]) .item-title,
+        .content-list li[data-project]:not([data-project=""]) .item-title,
+        .content-list li[data-training]:not([data-training=""]) .item-title,
+        .content-list li[data-cert]:not([data-cert=""]) .item-title {
+            text-decoration: underline dotted rgba(0, 0, 0, 0.4);
+            /*text-decoration-thickness: 1px;*/
+        }
+
+        .content-list li[data-tbcrew]:not([data-tbcrew=""]):hover .item-title,
+        .content-list li[data-project]:not([data-project=""]):hover .item-title,
+        .content-list li[data-training]:not([data-training=""]):hover .item-title,
+        .content-list li[data-cert]:not([data-cert=""]):hover .item-title {
+            text-decoration: underline solid rgba(0, 0, 0, 0.7);
+        }
+
+        /* ==================== 스킬 리스트 flex 정렬 ==================== */
+        .skills-list li {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 7px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+
+        /* ==================== 스킬 태그 ==================== */
+        .skill-tag {
+            background: #2c3e50;
+            color: white;
+            padding: 5px 16px;
+            border-radius: 15px;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        /* ==================== 푸터 ==================== */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .contact-btn {
+            background: transparent;
+            color: #2c3e50;
+            border: 2px solid #2c3e50;
+            padding: 11px 30px;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .contact-btn:hover {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .copyright {
+            color: #95a5a6;
+            font-size: 0.88rem;
+            margin-top: 20px;
+        }
+
+        /* ==================== 모달 스타일 ==================== */
+        .modal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 1.3rem;
+        }
+
+        .modal-content ul {
+            list-style: none;
+        }
+
+        .modal-content li {
+            margin-bottom: 12px;
+            font-size: 0.98rem;
+        }
+
+        .modal-content a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .modal-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* ==================== 모달 ==================== */
+        .cert-modal-bg {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cert-modal-bg.active {
+            display: flex;
+        }
+
+        .cert-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .cert-modal-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        /* ==================== 반응형 디자인 ==================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            header {
+                margin-bottom: 40px;
+                padding-bottom: 30px;
+            }
+
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+
+            .content-list {
+                margin-left: 5px;
+            }
+
+            .content-list li {
+                padding: 6px 0 6px 25px;
+                font-size: 0.88rem;
+            }
+
+            .content-list li::before {
+                left: 5px;
+                font-size: 0.9rem;
+            }
+
+            .item-date {
+                font-size: 0.7rem;
+                display: block;
+                margin-left: 0;
+                margin-top: 2px;
+            }
+
+            .item-desc {
+                font-size: 0.82rem;
+            }
+
+            .skill-tag {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            footer {
+                margin-top: 40px;
+                padding-top: 20px;
+            }
+
+            .contact-btn {
+                padding: 10px 25px;
+                font-size: 0.88rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ==================== 메인 컨테이너 ==================== -->
+    <div class="container">
+        <!-- ==================== 헤더 (프로필) ==================== -->
+        <header>
+            <img src="mypic.jpg" alt="정주훤" class="profile-img">
+            <h1>정주훤 JuHwon Jeong</h1>
+            <p class="subtitle">전남대학교 컴퓨터정보통신공학과 재학</p>
+        </header>
+
+        <!-- ==================== EDUCATION 섹션 ==================== -->
+        <section>
+            <h2 class="section-title">EDUCATION</h2>
+            <ul class="content-list">
+                <li>
+                    <span class="item-title">운남고등학교 졸업</span>
+                    <span class="item-date">2016.03~2019.02</span>
+                </li>
+                <li>
+                    <span class="item-title">순천대학교 정보통신·멀티미디어공학부 중퇴</span>
+                    <span class="item-date">2020.03~2020.12</span>
+                </li>
+                <li>
+                    <span class="item-title">전남대학교 컴퓨터정보통신공학과</span>
+                    <span class="item-date">2021.03~current</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ==================== ACTIVITIES 섹션 ==================== -->
+        <section>
+            <h2 class="section-title">ACTIVITIES</h2>
+            <ul class="content-list">
+                <li>
+                    <span class="item-title">대한민국 육군 병장 만기전역</span>
+                    <span class="item-date">2022.02~2022.08</span>
+                    <span class="item-desc">병과 : K200 장갑차 조종수</span>
+                </li>
+                <li>
+                    <span class="item-title">전남대학교 동물봉사 중앙동아리 '대학희망' 부회장</span>
+                    <span class="item-date">2023.09~2024.08</span>
+                </li>
+                <li>
+                    <span class="item-title">AI Lab 코딩학원 광주 일곡점 파트타임 강사</span>
+                    <span class="item-date">2024.08~2025.07</span>
+                </li>
+                <li>
+                    <span class="item-title">전남대학교 전자컴퓨터공학부 학생회 총무부장</span>
+                    <span class="item-date">2024.09~2025.08</span>
+                </li>
+                <li>
+                    <span class="item-title">전남대학교 전자컴퓨터공학부 학술동아리 'ICON' 회장 </span>
+                    <span class="item-date">2025.01~2025.12</span>
+                </li>
+                <li data-tbcrew="tbcrew">
+                    <span class="item-title">(주)터빈크루 인턴</span>
+                    <span class="item-date">2025.12~2026.02</span>
+                    <span class="item-desc">부서 : 임베디드 이노베이션</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ==================== PROJECTS 섹션 ==================== -->
+        <section>
+            <h2 class="section-title">PROJECTS</h2>
+            <ul class="content-list">
+                <li data-project="ncoss">
+                    <span class="item-title">2024 차세대통신 프로젝트 경진대회 최우수상 수상</span>
+                    <span class="item-date">2024.11</span>
+                    <span class="item-desc">AI 가속기를 적용한 맨홀 균열 탐지 시스템</span>
+                </li>
+                <li data-project="dcc">
+                    <span class="item-title">2025 Data Creator Camp</span>
+                    <span class="item-date">2025.08~2025.10</span>
+                    <span class="item-desc">위성 이미지-멀티모달 딥러닝을 이용한 대기오염 배출원 탐지</span>
+                </li>
+                <li>
+                    <span class="item-title">IoT 기반 자동 복약 관리 및 보호자 알림 시스템 '약꼭'</span>
+                    <span class="item-date">2025.09~2025.11</span>
+                    <span class="item-desc"></span>
+                </li>
+                <li>
+                    <span class="item-title">모바일 알림 파싱을 통한 회비 관리 자동화 플랫폼 '오토피봇(AutoFeeBot)'</span>
+                    <span class="item-date">2025.09~2025.12</span>
+                    <span class="item-desc"></span>
+                </li>
+                <li>
+                    <span class="item-title">Jetson Nano 기반 자율 착륙 드론 및 무선충전 드론 스테이션</span>
+                    <span class="item-date">2025.12~2026.02</span>
+                    <span class="item-desc"></span>
+                </li>
+                <li>
+                    <span class="item-title">Edge AI 기반 산업 현장 충돌 위험 예측 시스템</span>
+                    <span class="item-date">2026.01</span>
+                    <span class="item-desc">AI 가속기를 탑재한 reComputer AI Industiral R2000 기반 구현</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ==================== TRAINING 섹션 ==================== -->
+        <section>
+            <h2 class="section-title">TRAINING</h2>
+            <ul class="content-list">
+                <li data-training="ate">
+                    <span class="item-title">Fundamental of Testing on ATE 교육 수료</span>
+                    <span class="item-date">2023.12.26 ~ 2023.12.28</span>
+                </li>
+                <li data-training="advantest">
+                    <span class="item-title">ADVANTEST SoC TEST 현장실습 training 수료</span>
+                    <span class="item-date">2024.01.08 ~ 2024.01.12</span>
+                </li>
+                <li>
+                    <span class="item-title">6G AI 통신 실습 using MATLAB</span>
+                    <span class="item-date">2025.01.20 ~ 2025.01.24</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ==================== SKILLS 섹션 ==================== -->
+        <section>
+            <h2 class="section-title">SKILLS</h2>
+            <ul class="content-list skills-list">
+                <li>
+                    <span class="item-title">Languages</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">JavaScript</span>
+                </li>
+                <li>
+                    <span class="item-title">Frameworks</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">Spring</span>
+                </li>
+                <li>
+                    <span class="item-title">Database</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">MariaDB</span>
+                </li>
+                <li>
+                    <span class="item-title">Embedded</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Arduino</span>
+                    <span class="skill-tag">Raspberry Pi</span>
+                    <span class="skill-tag">STM32</span>
+                    <span class="skill-tag">Jetson NANO</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ==================== CERTIFICATIONS 섹션 ==================== -->
+        <section>
+            <h2 class="section-title">CERTIFICATIONS</h2>
+            <ul class="content-list">
+                <li data-cert="cospro">
+                    <span class="item-title">YBM Coding Specialist Professional 2급</span>
+                    <span class="item-date">2025.07.19</span>
+                </li>
+                <li data-cert="sqld">
+                    <span class="item-title">SQLD</span>
+                    <span class="item-date">2025.09.19</span>
+                </li>
+                <li data-cert="topcit">
+                    <span class="item-title">TOPCIT LEVEL3</span>
+                    <span class="item-date">2025.11.01</span>
+                </li>
+                <li data-cert="korean">
+                    <span class="item-title">한국사능력검정시험 1급</span>
+                    <span class="item-date">2026.02.20</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ==================== 푸터 ==================== -->
+        <footer>
+            <button id="contactBtn" class="contact-btn">Contact Me</button>
+            <p class="copyright">© 2026 JuHwon Jeong</p>
+        </footer>
+    </div>
+
+    <!-- ==================== TBCREW 모달 ==================== -->
+    <div id="tbcrewModaltbcrew" class="cert-modal-bg">
+        <div class="cert-modal-content">
+            <button class="close-btn cert-close">&times;</button>
+            <img src="tbcrew.png" alt="tbcrew">
+        </div>
+    </div>
+
+    <!-- ==================== PROJECTS 모달 ==================== -->
+    <div id="projectModalNcoss" class="cert-modal-bg">
+        <div class="cert-modal-content">
+            <button class="close-btn cert-close">&times;</button>
+            <img src="ncoss.jpg" alt="ncoss">
+        </div>
+    </div>
+
+    <div id="projectModalDcc" class="cert-modal-bg">
+        <div class="cert-modal-content">
+            <button class="close-btn cert-close">&times;</button>
+            <img src="dcc.jpg" alt="dcc">
+        </div>
+    </div>
+
+    <!-- ==================== TRAINING 모달 ==================== -->
+    <div id="trainingModalAte" class="cert-modal-bg">
+        <div class="cert-modal-content">
+            <button class="close-btn cert-close">&times;</button>
+            <img src="ate.jpg" alt="ate">
+        </div>
+    </div>
+
+    <div id="trainingModalAdvantest" class="cert-modal-bg">
+        <div class="cert-modal-content">
+            <button class="close-btn cert-close">&times;</button>
+            <img src="advantest.jpg" alt="advantest">
+        </div>
+    </div>
+
+    <!-- ==================== CERTIFICATIONS 모달 ==================== -->
+    <div id="certModalCospro" class="cert-modal-bg">
+        <div class="cert-modal-content">
+            <button class="close-btn cert-close">&times;</button>
+            <img src="cospro2.jpg" alt="cospro2">
+        </div>
+    </div>
+
+    <div id="certModalSqld" class="cert-modal-bg">
+        <div class="cert-modal-content">
+            <button class="close-btn cert-close">&times;</button>
+            <img src="sqld.jpg" alt="sqld">
+        </div>
+    </div>
+
+    <div id="certModalTopcit" class="cert-modal-bg">
+        <div class="cert-modal-content">
+            <button class="close-btn cert-close">&times;</button>
+            <img src="topcit.png" alt="topcit">
+        </div>
+    </div>
+
+    <div id="certModalKorean" class="cert-modal-bg">
+        <div class="cert-modal-content">
+            <button class="close-btn cert-close">&times;</button>
+            <img src="korean.png" alt="korean">
+        </div>
+    </div>
+
+    <!-- ==================== Contact 모달 ==================== -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <button id="closeModal" class="close-btn">&times;</button>
+            <h2>Contact Me</h2>
+            <ul>
+                <li><strong>Tel:</strong> +82 01067887585</li>
+                <li><strong>Email:</strong> juhwonjeong@gmail.com</li>
+                <li><strong>Instagram:</strong> <a href="https://www.instagram.com/juhwonee/"
+                        target="_blank">@juhwonee</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ==================== JavaScript ==================== -->
+    <script>
+        // ==================== Contact 모달 제어 ====================
+        document.getElementById('contactBtn').onclick = function () {
+            document.getElementById('contactModal').classList.add('active');
+        };
+
+        document.getElementById('closeModal').onclick = function () {
+            document.getElementById('contactModal').classList.remove('active');
+        };
+
+        document.getElementById('contactModal').onclick = function (e) {
+            if (e.target === this) this.classList.remove('active');
+        };
+
+        // ==================== TBCREW 모달 매핑 ====================
+        const tbcrewMapping = {
+            'tbcrew': 'tbcrewModaltbcrew'
+        };
+
+        // ==================== PROJECTS 모달 매핑 ====================
+        const projectMapping = {
+            'ncoss': 'projectModalNcoss',
+            'dcc': 'projectModalDcc'
+
+        };
+
+        // ==================== TRAINING 모달 매핑 ====================
+        const trainingMapping = {
+            'ate': 'trainingModalAte',
+            'advantest': 'trainingModalAdvantest'
+        };
+
+        // ==================== CERTIFICATIONS 모달 매핑 ====================
+        const certMapping = {
+            'cospro': 'certModalCospro',
+            'sqld': 'certModalSqld',
+            'topcit': 'certModalTopcit',
+            'korean': 'certModalKorean'
+
+        };
+
+        // ==================== TBCREW 클릭 이벤트 ====================
+        document.querySelectorAll('.content-list li[data-tbcrew]').forEach(item => {
+            item.addEventListener('click', function () {
+                const tbcrewType = this.getAttribute('data-tbcrew');
+                const modalId = tbcrewMapping[tbcrewType];
+                if (modalId) {
+                    document.getElementById(modalId).classList.add('active');
+                }
+            });
+        });
+
+        // ==================== PROJECTS 클릭 이벤트 ====================
+        document.querySelectorAll('.content-list li[data-project]').forEach(item => {
+            item.addEventListener('click', function () {
+                const projectType = this.getAttribute('data-project');
+                const modalId = projectMapping[projectType];
+                if (modalId) {
+                    document.getElementById(modalId).classList.add('active');
+                }
+            });
+        });
+
+        // ==================== TRAINING 클릭 이벤트 ====================
+        document.querySelectorAll('.content-list li[data-training]').forEach(item => {
+            item.addEventListener('click', function () {
+                const trainingType = this.getAttribute('data-training');
+                const modalId = trainingMapping[trainingType];
+                if (modalId) {
+                    document.getElementById(modalId).classList.add('active');
+                }
+            });
+        });
+
+        // ==================== CERTIFICATIONS 클릭 이벤트 ====================
+        document.querySelectorAll('.content-list li[data-cert]').forEach(item => {
+            item.addEventListener('click', function () {
+                const certType = this.getAttribute('data-cert');
+                const modalId = certMapping[certType];
+                if (modalId) {
+                    document.getElementById(modalId).classList.add('active');
+                }
+            });
+        });
+
+        // ==================== 모달 닫기 ====================
+        document.querySelectorAll('.cert-close').forEach(btn => {
+            btn.onclick = function () {
+                this.closest('.cert-modal-bg').classList.remove('active');
+            };
+        });
+
+        // ==================== 배경 클릭시 모달 닫기 ====================
+        document.querySelectorAll('.cert-modal-bg').forEach(modal => {
+            modal.onclick = function (e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            };
+        });
+    </script>
+</body>
+
+</html>
